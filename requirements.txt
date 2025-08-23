@@ -3,3 +3,7 @@ mkdocs
 mermaid-py
 dotenv
 pre-commit
+pymongo
+sqlalchemy
+streamlit
+duckdb
