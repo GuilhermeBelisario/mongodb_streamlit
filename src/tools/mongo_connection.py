@@ -60,3 +60,24 @@ class MongoConnection:
             MongoConnection._client.close()
             MongoConnection._client = None
             print("Conexão fechada com sucesso.")
+
+    @property
+    def writing_data(self, data):
+        """Escreve dados na coleção do MongoDB."""
+        if MongoConnection._client:
+            try:
+                self._collection.insert_one(data)
+                print("Dados escritos com sucesso.")
+            except Exception as e:
+                print(f"Erro ao escrever dados no MongoDB: {e}")
+
+    @property
+    def query_data(self, query):
+        """Consulta dados na coleção do MongoDB."""
+        if MongoConnection._client:
+            try:
+                result = self._collection.find(query)
+                return list(result)
+            except Exception as e:
+                print(f"Erro ao consultar dados no MongoDB: {e}")
+                return []
